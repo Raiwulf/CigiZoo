@@ -13,7 +13,7 @@ public class AnimalSpeciesParser : IFileParser<AnimalSpecies>
             if (string.IsNullOrEmpty(line.Trim())) continue;
 
             var parts = line.Split(';');
-            var name = parts[0];
+            var name = parts[0].Trim();
             var rate = decimal.Parse(parts[1]);
             var foodTypeString = parts[2];
             var foodType = Enum.Parse<FoodType>(foodTypeString, true);

@@ -9,6 +9,9 @@ public class ZooXmlParser : IZooXmlParser
     {
         var doc = XDocument.Load(filePath);
         var root = doc.Element("Zoo");
+        if (root is null)
+            throw new InvalidOperationException("Zoo element not found in XML");
+
         var speciesLookup = species.ToDictionary(s => s.Name.ToLowerInvariant(), StringComparer.OrdinalIgnoreCase);
 
         foreach (var animalContainer in root.Elements())
@@ -19,8 +22,8 @@ public class ZooXmlParser : IZooXmlParser
 
             foreach (var animalElement in animalContainer.Elements())
             {
-                var name = animalElement.Attribute("name").Value;
-                var kgString = animalElement.Attribute("kg").Value;
+                var name = animalElement.Attribute("name")!.Value;
+                var kgString = animalElement.Attribute("kg")!.Value;
                 var weight = decimal.Parse(kgString);
 
                 yield return new ZooAnimal(name, weight, matchedSpecies);

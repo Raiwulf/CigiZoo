@@ -33,9 +33,9 @@ app.MapGet("/api/zoo/daily-cost", (ZooService zooService, IConfiguration config)
 
 static (string pricesFile, string animalsFile, string zooFile) GetConfiguredFilePaths(IConfiguration config)
 {
-    string pricesFile = config["DataFiles:PricesFile"] ?? "D:\\Code\\repos\\cSharp\\CigiZoo\\sample-data\\prices.txt";
-    string animalsFile = config["DataFiles:AnimalsFile"] ?? "D:\\Code\\repos\\cSharp\\CigiZoo\\sample-data\\animals.csv";
-    string zooFile = config["DataFiles:ZooFile"] ?? "D:\\Code\\repos\\cSharp\\CigiZoo\\sample-data\\zoo.xml";
+    string pricesFile = config["DataFiles:PricesFile"] ?? "../../sample-data/prices.txt";
+    string animalsFile = config["DataFiles:AnimalsFile"] ?? "../../sample-data/animals.csv";
+    string zooFile = config["DataFiles:ZooFile"] ?? "../../sample-data/zoo.xml";
 
     return (pricesFile, animalsFile, zooFile);
 }

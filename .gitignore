@@ -422,7 +422,7 @@ yarn-error.log*
 wwwroot/lib/
 
 # ASP.NET Core MVC
-appsettings.Development.json
+# appsettings.Development.json  # Keep in version control for relative paths
 
 # Tooling
 .tooling/

@@ -434,7 +434,6 @@ wwwroot/lib/
 project.lock.json
 project.fragment.lock.json
 artifacts/
-**/Properties/launchSettings.json
 
 # .NET 6/7/8 SDK
 bin/

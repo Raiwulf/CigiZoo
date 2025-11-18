@@ -6,6 +6,9 @@ public class PriceFileParser : IFileParser<FoodPrice>
 {
     public IEnumerable<FoodPrice> Parse(string filePath)
     {
+        if (!File.Exists(filePath))
+            throw new ZooFoodCostException($"Prices file not found: {filePath}");
+
         var lines = File.ReadAllLines(filePath);
         decimal meatPrice = 0, fruitPrice = 0;
 

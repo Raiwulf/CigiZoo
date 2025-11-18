@@ -26,9 +26,16 @@ app.UseHttpsRedirection();
 
 app.MapGet("/api/zoo/daily-cost", (ZooService zooService, IConfiguration config) =>
 {
-    var (pricesFile, animalsFile, zooFile) = GetConfiguredFilePaths(config);
-    var totalCost = zooService.CalculateTotalDailyCost(pricesFile, animalsFile, zooFile);
-    return Results.Ok(new { TotalDailyCost = totalCost });
+    try
+    {
+        var (pricesFile, animalsFile, zooFile) = GetConfiguredFilePaths(config);
+        var totalCost = zooService.CalculateTotalDailyCost(pricesFile, animalsFile, zooFile);
+        return Results.Ok(new { TotalDailyCost = totalCost });
+    }
+    catch (ZooFoodCostException ex)
+    {
+        return Results.BadRequest(new { Error = ex.Message });
+    }
 });
 
 static (string pricesFile, string animalsFile, string zooFile) GetConfiguredFilePaths(IConfiguration config)
